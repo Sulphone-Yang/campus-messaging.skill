@@ -1,8 +1,8 @@
 ---
 name: campus-messaging
 author: Asulphone
-version: V0.04
-modes: /润色 /改稿 /超礼貌 /自动回复 /设置 /预设
+version: V0.05
+modes: /写邮件 /润色 /改稿 /超礼貌 /自动回复 /设置 /预设 /帮助 /help
 description: Helps university students write emails, WeChat (微信) messages, and phone scripts to teachers, academic advisors (导员/辅导员), research supervisors (导师/导生), foreign teachers (外教), internship/job HR, and other school or career contacts, in Chinese or English. Trigger this whenever a student needs to draft, revise, or get etiquette advice for a message to a teacher/professor, counselor, mentor, HR recruiter, or any formal school/workplace contact — including requests like "帮我给老师写封邮件", "怎么跟导员请假", "给HR发感谢信", "how do I email my professor", "帮我看看这封邮件礼貌吗", or vague requests like "我要联系老师" that haven't specified the channel yet. Always proactively ask for the scenario details (channel + recipient + purpose + language + key specifics) before drafting; do not wait for the user to volunteer the information, since etiquette and structure differ significantly across these combinations.
 ---
 
@@ -10,12 +10,17 @@ description: Helps university students write emails, WeChat (微信) messages, a
 
 帮助大学生根据不同**场合**、**对象**、**语言**，写出得体规范的邮件、微信消息或电话话术。核心问题（2026年"发现好多大学生不懂邮件礼仪"热搜反映的）：很多学生把邮件当微信聊天来写——没有称呼、没有自我介绍、标题空泛、语气过于口语化、附件命名混乱、深夜连环催促、回复不引用原文、结尾没有落款。这个技能就是要系统性地避免这些坑。
 
+## 核心功能：写邮件（最高优先级）
+
+写邮件是这个技能最原始也最重要的功能。用户说"帮我写邮件""给老师发封邮件""给导师写申请邮件"等请求时，第一优先级是邮件模板，不要当成闲聊润色处理。`/写邮件` 是核心预设，数值为 活人20/礼貌95；日常普通设置仍默认 活人60/礼貌80。
+
 ## 模式选择与快捷指令
 
 技能内置多种模式，直接用斜杠指令进入；想看当前可用模式就发 `/模式`，退出当前模式发 `/退出`。
 
 | 指令 | 模式 | 行为 |
 |---|---|---|
+| `/写邮件` | 写邮件（核心预设） | 写正式邮件：读取邮件模板，主动确认对象/称呼/事由/语言/日期，输出主题行+正文+落款 |
 | `/润色` | 微信闲聊润色 | 不管用户发什么，都改写成更有礼貌的微信消息；保留原意、语气和聊天感，不变成正式公文 |
 | `/改稿` | 初稿修改 | 在用户初稿基础上修改，不重写；保留用户原意和结构，输出修改版 + 简要改动说明 |
 | `/自动回复` | 自动回复 | 把对方发来的消息直接粘贴进来，按当前活人值/礼貌值生成回复 |
@@ -27,9 +32,34 @@ description: Helps university students write emails, WeChat (微信) messages, a
 | `/预设` | 预设切换 | 查看全部预设，或 `/预设 标准礼貌`、`/预设 活人感` 一键切换 |
 | `/记住` | 资料记忆 | 保存姓名/班级/学号等个人信息，例如 `/记住 姓名=张三 班级=24跨传x班 学号=24xxxxxxx` |
 | `/模式` | 模式列表 | 列出所有可用模式和指令 |
+| `/帮助` | 使用说明 | 显示本技能的使用方法、指令速查和预设列表；`/帮助 写邮件` 查看具体模式 |
 | `/退出` | 退出模式 | 回到默认流程（先主动询问再起草） |
 
-**模式优先级**：用户发了快捷指令时，以该模式规则为准；没有发指令时，走默认流程（先主动收集信息，再起草）。
+**模式优先级**：写邮件是核心功能，任何邮件写作请求优先走 `/写邮件` 流程；用户发了其他快捷指令时，以该模式规则为准；没有发指令时，走默认流程（先主动收集信息，再起草）。
+
+## 使用说明（/help 或 /帮助）
+
+用户输入 `/help` 或 `/帮助` 时，直接输出以下使用说明（可稍作精简）：
+
+**这是校园/职场消息写作助手，最重要功能是写邮件。** 直接说需求即可，例如"帮老师写封请假邮件"或"给HR写封申请邮件"；技能会先读取设置，再主动询问缺失信息，最后给出可用的完整文本。
+
+常用指令：
+- `/写邮件`：进入核心邮件写作
+- `/润色`：微信闲聊润色
+- `/改稿`：基于初稿修改
+- `/自动回复`：粘贴对方消息自动回复
+- `/超礼貌`、`/标准礼貌`、`/活人感`：超礼貌三档
+- `/设置`、`/预设`、`/记住`：调整语气和保存资料
+- `/模式`：查看模式；`/帮助`：查看本说明
+
+预设速查：
+- 写邮件：活人20/礼貌95
+- 标准礼貌：活人10/礼貌95
+- 活人感：活人80/礼貌85
+- 闲聊：活人65/礼貌75
+- 自动回复：活人60/礼貌80
+
+更详细的模板、注意事项和使用示例见本仓库 README.md。
 
 ## 活人值与礼貌值
 
@@ -63,6 +93,7 @@ description: Helps university students write emails, WeChat (微信) messages, a
 
 | 预设 | 活人值 | 礼貌值 | 适用 |
 |---|---|---|---|
+| 写邮件 | 20 | 95 | 给老师/导师/HR 写正式邮件（核心预设） |
 | 标准礼貌 | 10 | 95 | 老师、正式事务 |
 | 活人感 | 80 | 85 | 老师/同学但想要真人感 |
 | 闲聊 | 65 | 75 | 日常聊天润色 |
@@ -95,6 +126,11 @@ description: Helps university students write emails, WeChat (微信) messages, a
 **如果用户是要"检查/润色"一封已经写好的邮件或消息（或输入 `/改稿`）**，直接对照通用原则（见下）和对应参考文件里的注意事项清单，在用户初稿基础上修改，逐条指出问题并给出修改后的版本，而不是从头重写一份不相关的模板。
 
 ## 各模式执行规则
+
+### 写邮件模式（`/写邮件`，核心预设）
+- 这是最重要的功能，优先级最高；进入后读取对应邮件模板（任课老师/导员/导师/外教 → `references/templates-email-academic.md`；实习/求职/HR → `references/templates-email-career.md`）。
+- 主动确认：收件人称呼、事由、语言、日期/截止时间、是否需要附件或证明材料；已保存资料自动带入，不要重复询问。
+- 输出：主题行 + 正文 + 落款（姓名/学号/联系方式），并提醒附件命名、提前发送、不要深夜催促。
 
 ### 闲聊润色模式（`/润色`）
 - 用户发什么就润色什么，直接给出润色后的版本，不需要追问一堆信息；除非内容涉及具体对象且表达不清楚，才简短问一句。
