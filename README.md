@@ -23,6 +23,7 @@ python install-skill-from-github.py --repo Sulphone-Yang/campus-messaging.skill 
 | 指令 | 快捷键 | 模式 | 作用 |
 |---|---|---|---|
 | `/写邮件` | `/xyj` | 写邮件（核心预设） | 写正式邮件，输出主题行+正文+落款 |
+| `/我的风格` | `/wdfg` | 个人风格叠加层 | 默认开启，叠加 Asulphone 个人语言风格 |
 | `/润色` | `/rs` | 微信闲聊润色 | 不管发什么，都改写成更有礼貌的微信消息，保留聊天感和原意 |
 | `/改稿` | `/gg` | 初稿修改 | 在用户初稿基础上修改，不重写，附改动说明 |
 | `/超礼貌` | `/clm` | 超礼貌模式 | 对任何人都非常礼貌，默认使用标准礼貌 |
@@ -64,6 +65,19 @@ V0.06 起，活人值/礼貌值按 `campus-messaging/references/human-style-engi
 - 礼貌值控制称呼、敬语、请求软化、致谢和结尾余地
 - 输出前必跑反AI检查：禁用“首先/其次/综上所述/希望以上对您有帮助/作为一名AI/不仅仅...更是...”等 AI 味词句
 - 人类方向：长短句交替、话说到一半、自我纠正、具体细节、“然后/结果/其实/反正”式连接
+
+## 个人风格叠加层（Asulphone）
+
+V0.07 起默认开启个人语言风格叠加层，规则见 `campus-messaging/references/personal-style-asulphone.md`：
+
+- 第一人称学长口吻：我 / 本人 / 咱
+- 短句短段，一段只说一件事
+- 感叹/疑问驱动，允许“？？？”和“啥时候”
+- 自嘲玩梗词库：麻了、离谱、好家伙、那没事了、属于是、省流、……、~
+- 公众号/长文加粗关键信息、编号列表、“省流：”和固定签名
+- 正式邮件保留礼貌，但用短段落，不强行玩梗
+
+控制：`/我的风格`（`/wdfg`）查看，`/我的风格 开` 开启，`/我的风格 关` 关闭。
 
 ## 快速切换预设
 
@@ -143,6 +157,7 @@ campus-messaging.skill/
     ├── settings.json
     └── references/
         ├── human-style-engine.md
+        ├── personal-style-asulphone.md
         ├── templates-email-academic.md
         ├── templates-email-career.md
         ├── templates-phone.md
@@ -151,6 +166,7 @@ campus-messaging.skill/
 
 ## 版本历史
 
+- V0.07：新增 Asulphone 个人语言风格叠加层（默认开启），提供 `/我的风格`（`/wdfg`）开关
 - V0.06：所有指令新增拼音快捷键；重构活人值/礼貌值底层逻辑，新增反AI风格引擎与调研文档
 - V0.05：明确写邮件为核心功能/最高优先级预设，新增 `/写邮件`、`/帮助`、`/help` 使用说明
 - V0.04：新增活人值/礼貌值可调系统、自动回复模式、预设快速切换与资料记忆

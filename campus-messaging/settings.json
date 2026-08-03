@@ -1,6 +1,7 @@
 {
   "alive": 60,
   "politeness": 80,
+  "personal_style": true,
   "profile": {
     "name": "",
     "class": "",
