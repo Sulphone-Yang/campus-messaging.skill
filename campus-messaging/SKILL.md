@@ -1,24 +1,26 @@
 ---
 name: campus-messaging
 author: Asulphone
-description: Helps university students write emails, WeChat (微信) messages, and phone scripts to teachers, academic advisors (导员/辅导员), research supervisors (导师/导生), foreign teachers (外教), internship/job HR, and other school or career contacts, in Chinese or English. Trigger this whenever a student needs to draft, revise, or get etiquette advice for a message to a teacher/professor, counselor, mentor, HR recruiter, or any formal school/workplace contact — including requests like "帮我给老师写封邮件", "怎么跟导员请假", "给HR发感谢信", "how do I email my professor", "帮我看看这封邮件礼貌吗", or vague requests like "我要联系老师" that haven't specified the channel yet. Always clarify the scenario (channel + recipient + language) before drafting, since etiquette and structure differ significantly across these combinations.
+version: V0.02
+description: Helps university students write emails, WeChat (微信) messages, and phone scripts to teachers, academic advisors (导员/辅导员), research supervisors (导师/导生), foreign teachers (外教), internship/job HR, and other school or career contacts, in Chinese or English. Trigger this whenever a student needs to draft, revise, or get etiquette advice for a message to a teacher/professor, counselor, mentor, HR recruiter, or any formal school/workplace contact — including requests like "帮我给老师写封邮件", "怎么跟导员请假", "给HR发感谢信", "how do I email my professor", "帮我看看这封邮件礼貌吗", or vague requests like "我要联系老师" that haven't specified the channel yet. Always proactively ask for the scenario details (channel + recipient + purpose + language + key specifics) before drafting; do not wait for the user to volunteer the information, since etiquette and structure differ significantly across these combinations.
 ---
 
 # 校园/职场消息写作助手 (Campus & Career Messaging Skill)
 
 帮助大学生根据不同**场合**、**对象**、**语言**，写出得体规范的邮件、微信消息或电话话术。核心问题（2026年"发现好多大学生不懂邮件礼仪"热搜反映的）：很多学生把邮件当微信聊天来写——没有称呼、没有自我介绍、标题空泛、语气过于口语化、附件命名混乱、深夜连环催促、回复不引用原文、结尾没有落款。这个技能就是要系统性地避免这些坑。
 
-## 工作流程（务必先确认场景，再动笔）
+## 工作流程（先主动收集信息，再动笔）
 
-**第一步：确认场景，不要跳过。** 如果用户没有一次性说清楚以下三个维度，先简短提问确认（可以合并成一两句话问，不要逐条罗列成表单式问题）：
+**第一步：主动询问，收集全部关键信息，不要等用户自己补充。** 无论用户一开始说了多少，起草前都必须先主动提问，把场景确认清楚；不要只给带方括号的模板，让用户事后自己填。用户已经说清楚的信息不必重复问，只追问缺失或含糊的部分，并尽量一次问完（可以合并成一两条消息，但问题要具体）：
 
-1. **渠道 (Channel)**：邮件 / 微信消息 / 电话话术？
-   - 默认原则：正式事务（请假、申请、投递材料、联系不熟悉的人、需要留存记录的事）→ 邮件；日常沟通熟悉的老师/同学、简短确认 → 微信；紧急或需要即时答复 → 电话（但电话前后通常仍建议补一封邮件/消息留痕）。
-2. **对象 (Recipient)**：任课老师 / 导员·辅导员 / 导师（科研或论文指导）/ 外教 / 实习或校招 HR / 其他（如系统管理员、校友、合作方等——按最接近的类别类推）。
-3. **事由 (Purpose)**：例如请假、请求约谈/office hour、提问咨询、提交/延迟作业、请求推荐信、投递简历自荐、面试后跟进感谢、催办进度、婉拒offer等。事由决定用哪个模板段落结构。
-4. **语言 (Language)**：中文 / 英文（外教默认英文，但如果用户说明对方能读中文或要求双语，可调整）。
+1. **渠道 (Channel)**：邮件 / 微信消息 / 电话话术 / 纸质请假条或书面材料？
+   - 默认原则：正式事务（请假、申请、投递材料、联系不熟悉的人、需要留存记录的事）→ 邮件；日常沟通熟悉的老师/同学、简短确认 → 微信；紧急或需要即时答复 → 电话（但电话前后通常仍建议补一封邮件/消息留痕）。如果用户没有说明渠道，不要替他默认，先问。
+2. **对象 (Recipient)**：任课老师 / 导员·辅导员 / 导师（科研或论文指导）/ 外教 / 实习或校招 HR / 其他（如系统管理员、校友、合作方等——按最接近的类别类推）。同时询问对方姓氏/称呼（如"王老师"），不确定时再建议用"老师"。
+3. **事由 (Purpose)**：例如请假、请求约谈/office hour、提问咨询、提交/延迟作业、请求推荐信、投递简历自荐、面试后跟进感谢、催办进度、婉拒offer等。请用户简述具体背景，事由决定用哪个模板段落结构。
+4. **语言 (Language)**：中文 / 英文 / 双语（外教默认英文，但如果用户说明对方能读中文或要求双语，可调整）。
+5. **关键细节**：姓名、学院/班级、学号、课程名称、具体日期/时间段、附件或证明材料等会直接写进成品的信息，只要缺失就主动询问。
 
-如果用户已经提供了足够信息（比如"帮我写一封给导员的请假邮件，中文"），可以直接进入起草，不必再追问。**只在信息不足以选对模板时才提问，且一次问完，不要分多轮。**
+只有用户明确表示某项信息"随便编/由你决定"时，才可以自行虚构或留占位符；其余真实信息必须先问清楚。
 
 **第二步：读取对应的参考模板文件。** 根据渠道选择对应文件：
 
